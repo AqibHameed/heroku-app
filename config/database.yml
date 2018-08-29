@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch('DB_HOST') { 'localhost' } %>
+  port: <%= ENV.fetch('DB_PORT') { 5432 } %>
+  database: herokuapp_development
+  username: postgres
+  password: aqib
+
+development:
+  <<: *default
+test:
+  <<: *default
+  database: herokuapp_test
+
+production:
+  <<: *default
+  database: herokuapp_production
+  username: herokuapp
+  password: <%= ENV['HEROKUAPP_DATABASE_PASSWORD'] %>
